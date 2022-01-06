@@ -112,6 +112,10 @@ undeploy: ## Undeploy controller from the K8s cluster specified in ~/.kube/confi
 	echo 14
 	$(KUSTOMIZE) build config/default | kubectl delete --ignore-not-found=$(ignore-not-found) -f -
 
+code-generate: controller-gen
+	controller-gen object:headerFile="./tools/boilerplate.go.txt" \
+		crd:trivialVersions=true crd:crdVersions=v1 paths="./pkg/apis/..." output:crd:artifacts:config=config/crd/bases
+
 CONTROLLER_GEN = $(shell pwd)/bin/controller-gen
 .PHONY: controller-gen
 controller-gen: ## Download controller-gen locally if necessary.
@@ -143,3 +147,4 @@ GOBIN=$(PROJECT_DIR)/bin go get $(2) ;\
 rm -rf $$TMP_DIR ;\
 }
 endef
+

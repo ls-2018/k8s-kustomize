@@ -41,6 +41,8 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6
 kubectl get pods -n cert-manager
 
 #make manifests
+### controller-gen crd:trivialVersions=true object:headerFile=./hack/boilerplate.go.txt crd:crdVersions=v1 paths=./api/... output:crd:artifacts:config=config/crd/bases
+###        new file:   config/crd/bases/myapp.ls.com_redis.yaml
 #controller-gen rbac:roleName=manager-role crd webhook paths="./..." output:crd:artifacts:config=config/crd/bases
 #        new file:   config/crd/bases/myapp.ls.com_redis.yaml
 #        new file:   config/rbac/role.yaml
