@@ -1,0 +1,9 @@
+apiVersion: myapp.ls.com/v1
+kind: Redis
+metadata:
+#  finalizers:
+#    - xxxx
+  name: redis-crds
+spec:
+  port: 12345
+  num: 0
